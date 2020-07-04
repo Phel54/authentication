@@ -8,9 +8,8 @@
 		"dev": "nodemon --exec babel-node src/server.js",
 		"start": "pm2-runtime start www/server.js",
 		"watch": "babel ./src --out-dir www --source-maps --watch",
-		"clean": "rimraf www",
-		"transpile": "babel ./src --out-dir www --source-maps",
-		"build": "npm-run-all clean transpile"
+		"clean": "rimraf www"
+
 	},
 	"repository": {
 		"type": "git",
