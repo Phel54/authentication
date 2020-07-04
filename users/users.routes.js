@@ -8,9 +8,7 @@ router
     .route("/User/register")
     .post(User.createAccount) //Creating an Account
 
-router
-    .route("/auth/google")
-    .get(User.googleAuth); // log in Using Google OAuth
+
 
 router
     .route("/User/login")
