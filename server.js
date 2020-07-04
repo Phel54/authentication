@@ -27,12 +27,14 @@ app.use(bodyParserRaw);
 app.use(bodyParserText);
 app.use(cors());
 
-// Initialise Express Router
-const router = express.Router();
-app.use('/api/v1', router);
 
-// Admin Module
-// -
+//Initialising my routes here
+const userRouter = require("./users/users.routes");
+//Api Doc here
+const baseUrl = "/api/v1";
+
+app.use(baseUrl,userRouter);
+
 
 app.get('/api/v1', (req, res) =>
 	res.json({ message: 'Hello World! Welcome to iDeyPay Till Engine' })
