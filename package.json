@@ -1,0 +1,54 @@
+{
+	"name": "authentication",
+	"version": "1.0.0",
+	"description": "User Authencation for login and register",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon --exec babel-node src/server.js",
+		"start": "pm2-runtime start www/server.js",
+		"watch": "babel ./src --out-dir www --source-maps --watch",
+		"clean": "rimraf www",
+		"transpile": "babel ./src --out-dir www --source-maps",
+		"build": "npm-run-all clean transpile"
+  },
+  
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Phel54/authentication.git"
+	},
+	"author": "Isichei Phelim",
+	"license": "ISC",
+	"dependencies": {
+		"@hapi/joi": "^17.1.1",
+		"@sendgrid/mail": "^7.2.0",
+		"axios": "^0.19.2",
+		"bcrypt": "^5.0.0",
+		"body-parser": "^1.19.0",
+		"chalk": "^4.1.0",
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"faker": "^4.1.0",
+		"helmet": "^3.23.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.9.18",
+		"morgan": "^1.10.0",
+		"multer": "^1.4.2",
+		"nodemailer": "^6.4.8",
+		"passport": "^0.4.1",
+		"pm2": "^4.4.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.10.1",
+		"@babel/core": "^7.10.2",
+		"@babel/node": "^7.10.1",
+		"@babel/plugin-transform-runtime": "^7.10.1",
+		"@babel/polyfill": "^7.10.1",
+		"@babel/preset-env": "^7.10.2",
+		"@babel/runtime": "^7.10.2",
+		"nodemon": "^2.0.4",
+		"npm-run-all": "^4.1.5",
+		"newman": "^5.1.0"
+	}
+}
