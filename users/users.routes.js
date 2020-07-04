@@ -5,7 +5,7 @@ const validateToken = require("../auth-middleware").validateToken;
 const User = require("./users.controllers")
 
 router
-    .route("/User/register")
+    .route("/user/register")
     .post(User.createAccount) //Creating an Account
 
 

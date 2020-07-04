@@ -32,7 +32,7 @@ exports.createAccount = async (req,res,next)=>{
             }
             const token = crypto.randomBytes(20).toString('hex');
             
-            user = new user(userDATA);
+            user = new User(userDATA);
             user.resetPasswordToken = token;
             user.resetPasswordExpires = Date.now() + 60000 * 20; //20 mins
             await user.save();
@@ -47,7 +47,10 @@ exports.createAccount = async (req,res,next)=>{
 
         
     }catch(error) {
+		console.log(error);
 		return res.status(500).json({
+			
+			
 			success: false,
 			error: error || 'An error occurred',
 		});
