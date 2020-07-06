@@ -68,7 +68,7 @@ exports.login = async (req, res) => {
 			isActive:true,
 		});
 		if (!user)
-			return res.status(205).json({
+			return res.json({
 				success: false,
 				message: 'user not Found or Inactive',
 			});
@@ -107,14 +107,14 @@ exports.login = async (req, res) => {
 				});
 			})
 			.catch((err) => {
-				return res.status(401).json({
+				return res.json({
 					success: false,
 					message: 'Email or Password Incorrect',
 					error: err,
 				});
 			});
 	} catch (error) {
-		return res.status(500).json({
+		return res.json({
 			success: false,
 			error: error || 'An error occurred',
 		});
