@@ -68,7 +68,7 @@ exports.login = async (req, res) => {
 			isActive:true,
 		});
 		if (!user)
-			return res.status(400).json({
+			return res.status(205).json({
 				success: false,
 				message: 'user not Found or Inactive',
 			});
@@ -140,22 +140,23 @@ exports.recoverPassword = async (req, res) => {
 		user.resetPasswordExpires = Date.now() + 60000 * 20; //20 mins
 		await user.save();
 
-                          // send email
-                          let link = " https://school-payment.herokuapp.com"  + "/resetPassword/" + user.resetPasswordToken;
-                          const mailOptions = {
-                              to: req.body.email,
-                              from: "school@ideypay.com",
-                              subject: "Password change request",
-                              text:`Hi ${req.body.email} \n 
-                              Please click on the following link  ${link} to reset your password. \n\n 
-                              If you did not request this, please ignore this email and your password will remain unchanged.\n`,
-                              };
-          
+				 // send email
+				 let link = " "  + "/resetPassword/" + user.resetPasswordToken;
+				 const mailOptions = {
+					 to: user.email,
+					 from: "school@ideypay.com",
+					 subject: "Password change request",
+					 text:`Hi ${user.email} \n 
+					 Please click on the following link  ${link} to reset your password. \n\n 
+					 If you did not request this, please ignore this email and your password will remain unchanged.\n`,
+					 };
                         
-        
+					
                               sgMail.send(mailOptions, (error, result) => {
-                                if (error) return res.status(500).json({message: error.message});
-          
+                                if (error){
+									console.log(error)	
+								}  return res.status(500).json({message: error.message});
+										
           
                                 res.status(200).json({message: 'A reset link has been sent to ' + user.email + '.'}); });
         
@@ -524,7 +525,7 @@ exports.AdminDelete = async (req, res) => {
 exports.delete = async (req, res) => {
 	try {
         const payload = req.decoded;
-        if (payload && payload.isuser) {
+        if (payload && payload.isUser) {
 		const user = await User.findOne({
 			_id: req.params.id,
 			isActive: true,
@@ -539,7 +540,7 @@ exports.delete = async (req, res) => {
 		User.findOneAndUpdate(
 			{ _id: user._id },
 			{
-				isActive: false,
+				isActive: true,
 			},
 			{ new: true }
 		)
