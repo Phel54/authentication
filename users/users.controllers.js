@@ -11,11 +11,14 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 //Creating a user
 exports.createAccount = async (req,res,next)=>{
     try {
-        let user = await User.findOne({email:req.body.email, isActive:true});
+		let user = await User.findOne({email:req.body.email, isActive:true});
+		
         if(user){
+			console.log(user.email);
+			
             res.status.json({
                 success:false,
-                message:"user is already Registered."
+                message:"User is already Registered."
             })
 
         }
@@ -48,7 +51,7 @@ exports.createAccount = async (req,res,next)=>{
         
     }catch(error) {
 		console.log(error);
-		return res.status(500).json({
+		return res.json({
 			
 			
 			success: false,
