@@ -14,9 +14,9 @@ exports.createAccount = async (req,res,next)=>{
 		let user = await User.findOne({email:req.body.email, isActive:true});
 		
         if(user){
-			console.log(user.email);
+			console.log(user.emai);
 			
-            res.status.json({
+            res.json({
                 success:false,
                 message:"User is already Registered."
             })
